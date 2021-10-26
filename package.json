@@ -2,20 +2,30 @@
   "name": "rfswitch-gui",
   "version": "0.1.0",
   "private": true,
+  "main": "public/electron/main.js",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "concurrently": "^6.1.0",
+    "cross-env": "^7.0.3",
+    "electron": "^12.0.9",
+    "electron-rebuild": "^2.3.5",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
+    "serialport": "^9.0.7",
+    "wait-on": "^5.3.0",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "electron:serve": "concurrently -k \"cross-env BROWSER=none yarn start\" \"yarn electron:start\"",
+    "electron:start": "wait-on tcp:3000 && electron .",
+    "install": "electron-rebuild"
   },
   "eslintConfig": {
     "extends": [
